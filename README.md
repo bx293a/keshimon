@@ -10,3 +10,11 @@ config.ini将IP的值改为模拟器名，可用以下命令查看
 ```
 adb devices
 ```
+## 运行（5x5）
+```
+python keshimon55.py
+```
+## 运行（6x6）
+```
+python keshimon66.py
+```
