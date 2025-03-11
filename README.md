@@ -1,6 +1,9 @@
 ## 安装python、adb
 自行安装
 
+## 模拟器尺寸
+1080x1920
+
 ## 安装依赖
 ```
 pip install -r requirements.txt
@@ -17,4 +20,8 @@ python keshimon55.py
 ## 运行（6x6）
 ```
 python keshimon66.py
+```
+## 修改55、66.py代码里的最后一行,自行设置间隔
+```
+time.sleep(0.1)
 ```
