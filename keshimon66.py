@@ -104,8 +104,19 @@ cv2.imwrite("grid_clustered.png", grid_img)
 # 按照编号排序（从小到大点击）**
 click_positions.sort()
 
-# 依次点击编号位置**
+# 归类相同编号的点击点
+click_dict = {}
 for label, x, y in click_positions:
-    print(f"点击编号 {label}，坐标 ({x}, {y})")
-    os.system(f"adb -s {device_ip} shell input tap {x} {y}")
-    time.sleep(0.2)  # 防止点击过快
+    if label not in click_dict:
+        click_dict[label] = []
+    click_dict[label].append((x, y))
+
+# 逐个编号执行点击
+for label, positions in sorted(click_dict.items()):
+    tap_commands = " && ".join([f"adb -s {device_ip} shell input tap {x} {y}" for x, y in positions])
+    
+    print(f"点击编号 {label} 的所有坐标: {positions}")
+    
+    # 一次性执行多个点击
+    os.system(tap_commands)
+    time.sleep(0.1)  # 防止过快
